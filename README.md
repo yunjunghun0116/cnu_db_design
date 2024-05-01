@@ -21,3 +21,6 @@
 - [ ] 주문 생성하기
 - [ ] 주문 내역 조회
 - [ ] 기간을 통한 주문내역 조회
+
+### ERD
+![ERD](https://github.com/yunjunghun0116/cnu_db_design/assets/76200940/21bf9b75-2ba2-4676-98c7-3024d960d155)
