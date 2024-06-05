@@ -24,10 +24,6 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id", referencedColumnName = "id")
-    private Store store;
-
     @Column(name = "name")
     private String name;
 
@@ -37,12 +33,4 @@ public class Menu {
     @Builder.Default
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Category> categoryList = new ArrayList<>();
-
-    @Builder.Default
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<BasketMenu> basketMenuList = new ArrayList<>();
-
-    @Builder.Default
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderMenu> orderMenuList = new ArrayList<>();
 }

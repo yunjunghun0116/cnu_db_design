@@ -2,6 +2,7 @@ package com.junghun.con.domain.order.entity;
 
 import com.junghun.con.domain.menu.entity.Menu;
 import com.junghun.con.domain.point.entity.Point;
+import com.junghun.con.domain.store.entity.Store;
 import com.junghun.con.domain.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,6 +26,10 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id", referencedColumnName = "id")
+    private Store store;
 
     @Builder.Default
     @Column(name = "total_price")
