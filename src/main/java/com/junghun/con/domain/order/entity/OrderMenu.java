@@ -22,9 +22,8 @@ public class OrderMenu {
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_id", referencedColumnName = "id")
-    private Menu menu;
+    @Column(name = "menu_id")
+    private Long menuId;
 
     @Builder.Default
     @Column(name = "count")
