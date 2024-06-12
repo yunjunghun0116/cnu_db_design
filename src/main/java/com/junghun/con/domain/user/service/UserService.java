@@ -1,5 +1,6 @@
 package com.junghun.con.domain.user.service;
 
+import com.junghun.con.domain.point.service.PointService;
 import com.junghun.con.domain.user.dto.LoginDto;
 import com.junghun.con.domain.user.dto.RegisterDto;
 import com.junghun.con.domain.user.entity.User;
@@ -20,9 +21,7 @@ public class UserService {
 
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public User findById(Long userId){
-        return repository.findById(userId).orElseThrow(()-> new NotFoundUserException(userId+" ID를 가진 이용자가 존재하지 않습니다."));
-    }
+    private final PointService pointService;
 
     public User register(RegisterDto registerDto) {
         if(!RegexUtils.isValidEmail(registerDto.getEmail())){
@@ -46,6 +45,8 @@ public class UserService {
                 .password(encryptedPassword)
                 .phone(registerDto.getPhone())
                 .build();
+
+        pointService.welcomePoint(user.getId());
 
         return repository.save(user);
     }
