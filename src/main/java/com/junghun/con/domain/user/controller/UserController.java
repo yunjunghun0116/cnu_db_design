@@ -23,4 +23,11 @@ public class UserController {
         User registeredUser = service.register(registerDto);
         return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
     }
+
+    @ResponseBody
+    @PutMapping("/login")
+    public ResponseEntity<User> login(@RequestBody LoginDto loginDto) {
+        User loginUser = service.login(loginDto);
+        return new ResponseEntity<>(loginUser, HttpStatus.CREATED);
+    }
 }

@@ -1,9 +1,11 @@
 package com.junghun.con.domain.user.service;
 
+import com.junghun.con.domain.user.dto.LoginDto;
 import com.junghun.con.domain.user.dto.RegisterDto;
 import com.junghun.con.domain.user.entity.User;
 import com.junghun.con.domain.user.exception.DuplicatedEmailException;
 import com.junghun.con.domain.user.exception.InvalidInputException;
+import com.junghun.con.domain.user.exception.NotFoundUserException;
 import com.junghun.con.domain.user.repository.UserRepository;
 import com.junghun.con.util.RegexUtils;
 import lombok.RequiredArgsConstructor;
@@ -42,5 +44,15 @@ public class UserService {
                 .build();
 
         return repository.save(user);
+    }
+
+    public User login(LoginDto loginDto) {
+        User user = repository.findByEmail(loginDto.getEmail()).orElseThrow(()-> new NotFoundUserException(loginDto.getEmail()+" 이메일을 가진 이용자가 존재하지 않습니다."));
+
+        if (user != null && passwordEncoder.matches(loginDto.getPassword(),user.getPassword())) {
+            return user;
+        }
+
+        return null;
     }
 }
