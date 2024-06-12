@@ -20,6 +20,10 @@ public class UserService {
 
     private final BCryptPasswordEncoder passwordEncoder;
 
+    public User findById(Long userId){
+        return repository.findById(userId).orElseThrow(()-> new NotFoundUserException(userId+" ID를 가진 이용자가 존재하지 않습니다."));
+    }
+
     public User register(RegisterDto registerDto) {
         if(!RegexUtils.isValidEmail(registerDto.getEmail())){
             throw new InvalidInputException("사용할 수 없는 이메일입니다. ");
