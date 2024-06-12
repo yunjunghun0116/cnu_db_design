@@ -25,9 +25,11 @@ public class Point {
     @Column(name = "point")
     private int point;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "received_date")
     private LocalDateTime receivedDate;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "expired_date")
     private LocalDateTime expiredDate;
 

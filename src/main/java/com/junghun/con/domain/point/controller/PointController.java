@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/point")
 @RequiredArgsConstructor
@@ -19,6 +21,12 @@ public class PointController {
     public ResponseEntity<Point> makePoint(@RequestBody MakePointDto makePointDto) {
         Point point = service.makePoint(makePointDto);
         return new ResponseEntity<>(point, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Point>> getUserPoint(@PathVariable Long userId) {
+        List<Point> pointList = service.getUserPoint(userId);
+        return new ResponseEntity<>(pointList, HttpStatus.CREATED);
     }
 
 }
