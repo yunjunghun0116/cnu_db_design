@@ -1,11 +1,18 @@
-package com.junghun.con.domain.user.dto;
+package com.junghun.con.domain.store.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalTime;
+
 @Getter
 @Setter
-public class LoginDto {
-    private String email;
-    private String password;
+public class StoreDto {
+    private String name;
+    private String city;
+    private String middlePlace;
+    private String detailPlace;
+    private LocalTime openTime;
+    private LocalTime closeTime;
+    private boolean isRestHoliday;
 }
