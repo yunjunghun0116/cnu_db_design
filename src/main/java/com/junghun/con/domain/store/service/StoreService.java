@@ -8,6 +8,8 @@ import com.junghun.con.domain.store.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class StoreService {
@@ -35,5 +37,9 @@ public class StoreService {
         addressService.makeStoreAddress(storeAddressDto);
 
         return savedStore;
+    }
+
+    public List<Store> getAllStore(){
+        return repository.findAll();
     }
 }

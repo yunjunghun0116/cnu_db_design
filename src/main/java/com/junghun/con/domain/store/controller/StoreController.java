@@ -6,10 +6,9 @@ import com.junghun.con.domain.store.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/store")
@@ -22,6 +21,12 @@ public class StoreController {
     public ResponseEntity<Store> openStore(@RequestBody StoreDto storeDto) {
         Store store = service.openStore(storeDto);
         return new ResponseEntity<>(store, HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Store>> getAllStore() {
+        List<Store> storeList = service.getAllStore();
+        return new ResponseEntity<>(storeList, HttpStatus.OK);
     }
 
 }

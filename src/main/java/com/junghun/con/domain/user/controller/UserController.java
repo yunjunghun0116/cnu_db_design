@@ -25,6 +25,6 @@ public class UserController {
     @PutMapping("/login")
     public ResponseEntity<User> login(@RequestBody LoginDto loginDto) {
         User loginUser = service.login(loginDto);
-        return new ResponseEntity<>(loginUser, HttpStatus.CREATED);
+        return new ResponseEntity<>(loginUser, HttpStatus.OK);
     }
 }
