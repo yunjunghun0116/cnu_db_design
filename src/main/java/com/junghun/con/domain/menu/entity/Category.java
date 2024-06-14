@@ -1,6 +1,5 @@
 package com.junghun.con.domain.menu.entity;
 
-import com.junghun.con.domain.store.entity.Store;
 import jakarta.persistence.*;
 import lombok.*;
 

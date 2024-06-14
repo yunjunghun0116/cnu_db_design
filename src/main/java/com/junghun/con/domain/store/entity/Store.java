@@ -1,12 +1,6 @@
 package com.junghun.con.domain.store.entity;
 
-import com.junghun.con.domain.basket.entity.BasketMenu;
-import com.junghun.con.domain.like.entity.LikeStore;
-import com.junghun.con.domain.menu.entity.Menu;
 import com.junghun.con.domain.order.entity.Order;
-import com.junghun.con.domain.order.entity.OrderMenu;
-import com.junghun.con.domain.point.entity.Point;
-import com.junghun.con.domain.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,10 +1,8 @@
 package com.junghun.con.domain.point.entity;
 
-import com.junghun.con.domain.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,16 +17,17 @@ public class Point {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(name = "point")
     private int point;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "received_date")
     private LocalDateTime receivedDate;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "expired_date")
     private LocalDateTime expiredDate;
 
