@@ -10,21 +10,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService service;
 
-    @ResponseBody
     @PutMapping("/register")
     public ResponseEntity<User> register(@RequestBody RegisterDto registerDto) {
         User registeredUser = service.register(registerDto);
         return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
     }
 
-    @ResponseBody
     @PutMapping("/login")
     public ResponseEntity<User> login(@RequestBody LoginDto loginDto) {
         User loginUser = service.login(loginDto);

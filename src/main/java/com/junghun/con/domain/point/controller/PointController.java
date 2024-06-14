@@ -23,10 +23,16 @@ public class PointController {
         return new ResponseEntity<>(point, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/user/{userId}")
     public ResponseEntity<List<Point>> getUserPoint(@PathVariable Long userId) {
         List<Point> pointList = service.getUserPoint(userId);
-        return new ResponseEntity<>(pointList, HttpStatus.CREATED);
+        return new ResponseEntity<>(pointList, HttpStatus.OK);
+    }
+
+    @PatchMapping("/use/{id}")
+    public ResponseEntity<Point> usePoint(@PathVariable Long id) {
+        Point point = service.usePoint(id);
+        return new ResponseEntity<>(point, HttpStatus.OK);
     }
 
 }
