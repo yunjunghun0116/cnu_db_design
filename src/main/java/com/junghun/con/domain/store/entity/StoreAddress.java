@@ -14,9 +14,8 @@ public class StoreAddress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id", referencedColumnName = "id")
-    private Store store;
+    @Column(name = "store_id")
+    private Long storeId;
 
     @Column(name = "city", length = 50)
     private String city;
