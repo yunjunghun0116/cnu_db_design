@@ -1,10 +1,8 @@
 package com.junghun.con.domain.point.entity;
 
-import com.junghun.con.domain.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity

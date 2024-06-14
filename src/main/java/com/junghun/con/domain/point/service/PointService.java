@@ -43,13 +43,13 @@ public class PointService {
         repository.save(point);
     }
 
-    public List<Point> getUserPoint(Long userId){
+    public List<Point> getUserPoint(Long userId) {
         return repository.findByUserCanUsePoint(userId);
     }
 
     public Point usePoint(Long id) {
-        Point point = repository.findById(id).orElseThrow(()->new NotFoundPointException(id+" 아이디를 가진 포인트가 존재하지 않습니다."));
-        if(point.getExpiredDate().isBefore(LocalDateTime.now())){
+        Point point = repository.findById(id).orElseThrow(() -> new NotFoundPointException(id + " 아이디를 가진 포인트가 존재하지 않습니다."));
+        if (point.getExpiredDate().isBefore(LocalDateTime.now())) {
             throw new UnavailablePointException("사용 불가능한 포인트입니다.");
         }
 

@@ -1,8 +1,5 @@
 package com.junghun.con.domain.order.entity;
 
-import com.junghun.con.domain.menu.entity.Menu;
-import com.junghun.con.domain.store.entity.Store;
-import com.junghun.con.domain.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface PointRepository extends JpaRepository<Point, Long> {
 
-    @Query(value = "SELECT * FROM point WHERE expired_date > now() AND user_id = :userId AND is_used = false",nativeQuery = true)
+    @Query(value = "SELECT * FROM point WHERE expired_date > now() AND user_id = :userId AND is_used = false", nativeQuery = true)
     List<Point> findByUserCanUsePoint(Long userId);
 }

@@ -24,13 +24,13 @@ public class UserService {
     private final PointService pointService;
 
     public User register(RegisterDto registerDto) {
-        if(!RegexUtils.isValidEmail(registerDto.getEmail())){
+        if (!RegexUtils.isValidEmail(registerDto.getEmail())) {
             throw new InvalidInputException("사용할 수 없는 이메일입니다. ");
         }
-        if(!RegexUtils.isValidPassword(registerDto.getPassword())){
+        if (!RegexUtils.isValidPassword(registerDto.getPassword())) {
             throw new InvalidInputException("사용할 수 없는 패스워드입니다. ");
         }
-        if(!RegexUtils.isValidName(registerDto.getName())){
+        if (!RegexUtils.isValidName(registerDto.getName())) {
             throw new InvalidInputException("사용할 수 없는 닉네임입니다.");
         }
         if (repository.findByEmail(registerDto.getEmail()).isPresent()) {
@@ -52,9 +52,9 @@ public class UserService {
     }
 
     public User login(LoginDto loginDto) {
-        User user = repository.findByEmail(loginDto.getEmail()).orElseThrow(()-> new NotFoundUserException(loginDto.getEmail()+" 이메일을 가진 이용자가 존재하지 않습니다."));
+        User user = repository.findByEmail(loginDto.getEmail()).orElseThrow(() -> new NotFoundUserException(loginDto.getEmail() + " 이메일을 가진 이용자가 존재하지 않습니다."));
 
-        if (user != null && passwordEncoder.matches(loginDto.getPassword(),user.getPassword())) {
+        if (user != null && passwordEncoder.matches(loginDto.getPassword(), user.getPassword())) {
             return user;
         }
 
