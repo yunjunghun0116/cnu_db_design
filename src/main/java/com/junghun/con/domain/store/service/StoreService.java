@@ -1,5 +1,6 @@
 package com.junghun.con.domain.store.service;
 
+import com.junghun.con.domain.store.dto.StoreAddressDto;
 import com.junghun.con.domain.store.dto.StoreDto;
 import com.junghun.con.domain.store.entity.Store;
 import com.junghun.con.domain.store.entity.StoreAddress;
@@ -13,6 +14,8 @@ public class StoreService {
 
     private final StoreRepository repository;
 
+    private final StoreAddressService addressService;
+
     public Store openStore(StoreDto storeDto){
         Store store = Store.builder()
                 .name(storeDto.getName())
@@ -23,12 +26,13 @@ public class StoreService {
 
         Store savedStore = repository.save(store);
 
-        StoreAddress storeAddress = StoreAddress.builder()
-                .storeId(savedStore.getId())
-                .city(storeDto.getCity())
-                .middlePlace(storeDto.getMiddlePlace())
-                .detailPlace(storeDto.getDetailPlace())
-                .build();
+        StoreAddressDto storeAddressDto = new StoreAddressDto();
+        storeAddressDto.setStoreId(savedStore.getId());
+        storeAddressDto.setCity(storeDto.getCity());
+        storeAddressDto.setMiddlePlace(storeDto.getMiddlePlace());
+        storeAddressDto.setDetailPlace(storeDto.getDetailPlace());
+
+        addressService.makeStoreAddress(storeAddressDto);
 
         return savedStore;
     }
