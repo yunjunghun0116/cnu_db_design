@@ -29,4 +29,10 @@ public class StoreController {
         return new ResponseEntity<>(storeList, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Store> getStoreById(@PathVariable Long id) {
+        Store store = service.getStoreById(id);
+        return new ResponseEntity<>(store, HttpStatus.OK);
+    }
+
 }
