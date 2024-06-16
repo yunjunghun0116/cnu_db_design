@@ -11,6 +11,9 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     @Query("SELECT c FROM Category c WHERE c.name = :categoryName")
-    List<Category> findByCategoryName(String categoryName);;
+    List<Category> findByCategoryName(String categoryName);
+
+    @Query("SELECT c FROM Category c WHERE c.name = :categoryName AND c.menuId = :menuId")
+    List<Category> findDuplicatedCategoryName(Long menuId, String categoryName);
 
 }
