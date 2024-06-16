@@ -10,9 +10,7 @@ import java.util.List;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-    @Query(value = "SELECT * FROM CATEGORY WHERE menu_id IN " +
-            "(SELECT DISTINCT menu_id FROM CATEGORY WHERE name = :categoryName)"
-            , nativeQuery = true)
-    List<Category> findByCategoryName(String categoryName);
+    @Query("SELECT c FROM Category c WHERE c.name = :categoryName")
+    List<Category> findByCategoryName(String categoryName);;
 
 }
