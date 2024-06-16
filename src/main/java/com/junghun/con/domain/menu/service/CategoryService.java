@@ -21,6 +21,7 @@ public class CategoryService {
         if(!categoryList.isEmpty()){
             throw new DuplicatedCategoryException("이미 해당 메뉴에는 같은 이름을 갖고 있는 카테고리가 존재합니다.");
         }
+
         Category category = Category.builder()
                 .menuId(categoryDto.getMenuId())
                 .name(categoryDto.getName())

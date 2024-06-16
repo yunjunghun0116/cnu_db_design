@@ -30,7 +30,7 @@ public class CategoryController {
     @GetMapping("/find")
     public ResponseEntity<List<Category>> findByCategoryName(@RequestParam String categoryName) {
         List<Category> categoryList = service.findByCategoryName(categoryName);
-        return new ResponseEntity<>(categoryList, HttpStatus.CREATED);
+        return new ResponseEntity<>(categoryList, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
