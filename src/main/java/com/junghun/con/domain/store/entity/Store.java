@@ -24,9 +24,6 @@ public class Store {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
-    private StoreAddress address;
-
     @Column(name = "open_time")
     private LocalTime openTime;
 
