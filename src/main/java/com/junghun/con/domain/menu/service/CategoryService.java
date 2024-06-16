@@ -12,13 +12,13 @@ public class CategoryService {
 
     private final CategoryRepository repository;
 
-    public void addCategory(CategoryDto categoryDto){
+    public Category addCategory(CategoryDto categoryDto) {
         Category category = Category.builder()
-                .menu(categoryDto.getMenu())
+                .menuId(categoryDto.getMenuId())
                 .name(categoryDto.getName())
                 .build();
 
-        repository.save(category);
+        return repository.save(category);
     }
 
 

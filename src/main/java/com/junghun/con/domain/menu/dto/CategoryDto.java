@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CategoryDto {
-    private Menu menu;
+    private Long menuId;
     private String name;
 }
