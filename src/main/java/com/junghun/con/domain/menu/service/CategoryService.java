@@ -6,6 +6,8 @@ import com.junghun.con.domain.menu.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
@@ -19,6 +21,10 @@ public class CategoryService {
                 .build();
 
         return repository.save(category);
+    }
+
+    public List<Category> findByCategoryName(String categoryName) {
+        return repository.findByCategoryName(categoryName);
     }
 
     public void deleteCategory(Long id) {
