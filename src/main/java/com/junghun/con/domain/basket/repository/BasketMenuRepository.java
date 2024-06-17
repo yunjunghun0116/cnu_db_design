@@ -10,4 +10,5 @@ import java.util.List;
 
 @Repository
 public interface BasketMenuRepository extends JpaRepository<BasketMenu, Long> {
+    List<BasketMenu> findAllByUserId(Long userId);
 }

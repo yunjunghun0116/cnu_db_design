@@ -1,5 +1,6 @@
 package com.junghun.con.domain.order.entity;
 
+import com.junghun.con.domain.menu.entity.Menu;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,8 +20,9 @@ public class OrderMenu {
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
 
-    @Column(name = "menu_id")
-    private Long menuId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_id", referencedColumnName = "id")
+    private Menu menu;
 
     @Builder.Default
     @Column(name = "count")

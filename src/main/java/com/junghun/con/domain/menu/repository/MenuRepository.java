@@ -20,7 +20,7 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
     List<Menu> findByNameAndPrice(String name, int minPrice, int maxPrice);
 
     @Query("SELECT m FROM Menu m "+
-    "JOIN Category c ON c.menuId = m.id "+
+    "JOIN Category c ON c.menu.id = m.id "+
     "WHERE c.name = :category")
     List<Menu> findByCategory(String category);
 }
