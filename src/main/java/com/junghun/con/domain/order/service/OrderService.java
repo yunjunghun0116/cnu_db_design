@@ -7,6 +7,8 @@ import com.junghun.con.domain.order.entity.Order;
 import com.junghun.con.domain.order.entity.OrderMenu;
 import com.junghun.con.domain.order.repository.OrderMenuRepository;
 import com.junghun.con.domain.order.repository.OrderRepository;
+import com.junghun.con.domain.point.dto.MakePointDto;
+import com.junghun.con.domain.point.service.PointService;
 import com.junghun.con.domain.store.entity.Store;
 import com.junghun.con.domain.store.exception.NotFoundStoreException;
 import com.junghun.con.domain.store.repository.StoreRepository;
@@ -30,13 +32,13 @@ public class OrderService {
     private final OrderMenuRepository orderMenuRepository;
     private final UserRepository userRepository;
     private final StoreRepository storeRepository;
+    private final PointService pointService;
 
-    public Order order(OrderDto orderDto){
+    public Order order(OrderDto orderDto) {
         List<BasketMenu> allBasketMenu = getAllBasketMenu(orderDto.getUserId());
 
         User user = userRepository.findById(orderDto.getUserId()).orElseThrow(() -> new NotFoundUserException("해당 id를 가진 유저가 존재하지 않습니다."));
         Store store = storeRepository.findById(orderDto.getStoreId()).orElseThrow(() -> new NotFoundStoreException("해당 id를 가진 음식점이 존재하지 않습니다."));
-
 
         Order order = Order.builder()
                 .user(user)
@@ -47,7 +49,7 @@ public class OrderService {
 
         Order savedOrder = repository.save(order);
 
-        for(BasketMenu menu : allBasketMenu){
+        for (BasketMenu menu : allBasketMenu) {
             OrderMenu orderMenu = OrderMenu.builder()
                     .order(savedOrder)
                     .menu(menu.getMenu())
@@ -55,7 +57,15 @@ public class OrderService {
                     .build();
 
             orderMenuRepository.save(orderMenu);
+            basketMenuRepository.deleteById(menu.getId());
         }
+
+        MakePointDto pointDto = new MakePointDto();
+        pointDto.setPoint((int) (orderDto.getTotalPrice() * 0.1));
+        pointDto.setUserId(orderDto.getUserId());
+        pointDto.setMinOrderPrice(10000);
+
+        pointService.makePoint(pointDto);
 
         return savedOrder;
     }
