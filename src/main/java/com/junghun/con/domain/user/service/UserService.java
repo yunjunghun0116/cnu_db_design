@@ -45,10 +45,11 @@ public class UserService {
                 .password(encryptedPassword)
                 .phone(registerDto.getPhone())
                 .build();
+        User savedUser = repository.save(user);
 
-        pointService.welcomePoint(user.getId());
+        pointService.welcomePoint(savedUser.getId());
 
-        return repository.save(user);
+        return savedUser;
     }
 
     public User login(LoginDto loginDto) {
