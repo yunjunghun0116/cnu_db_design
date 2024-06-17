@@ -14,8 +14,9 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "menu_id")
-    private Long menuId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "menu_id", referencedColumnName = "id")
+    private Menu menu;
 
     @Column(name = "name")
     private String name;
