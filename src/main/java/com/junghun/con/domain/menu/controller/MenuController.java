@@ -47,5 +47,12 @@ public class MenuController {
         return new ResponseEntity<>(menuList, HttpStatus.OK);
     }
 
+    @GetMapping("/category")
+    public ResponseEntity<List<Menu>> findByCategory(
+            @RequestParam String category
+    ) {
+        List<Menu> menuList = service.findByCategory(category);
+        return new ResponseEntity<>(menuList, HttpStatus.OK);
+    }
 
 }

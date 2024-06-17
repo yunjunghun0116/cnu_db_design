@@ -39,5 +39,9 @@ public class MenuService {
         return repository.findByNameAndPrice(name, minPrice, maxPrice);
     }
 
+    public List<Menu> findByCategory(String category) {
+        return repository.findByCategory(category);
+    }
+
 
 }

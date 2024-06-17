@@ -30,10 +30,6 @@ public class CategoryService {
         return repository.save(category);
     }
 
-    public List<Category> findByCategoryName(String categoryName) {
-        return repository.findByCategoryName(categoryName);
-    }
-
     public void deleteCategory(Long id) {
         repository.deleteById(id);
     }

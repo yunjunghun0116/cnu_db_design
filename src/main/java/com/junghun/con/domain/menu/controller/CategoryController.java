@@ -27,12 +27,6 @@ public class CategoryController {
         return new ResponseEntity<>(category, HttpStatus.CREATED);
     }
 
-    @GetMapping("/find")
-    public ResponseEntity<List<Category>> findByCategoryName(@RequestParam String categoryName) {
-        List<Category> categoryList = service.findByCategoryName(categoryName);
-        return new ResponseEntity<>(categoryList, HttpStatus.OK);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
         service.deleteCategory(id);
