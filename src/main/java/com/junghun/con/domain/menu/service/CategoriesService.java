@@ -5,7 +5,7 @@ import com.junghun.con.domain.menu.entity.Category;
 import com.junghun.con.domain.menu.entity.Menu;
 import com.junghun.con.domain.menu.exception.DuplicatedCategoryException;
 import com.junghun.con.domain.menu.exception.NotFoundMenuException;
-import com.junghun.con.domain.menu.repository.CategoryRepository;
+import com.junghun.con.domain.menu.repository.CategoriesRepository;
 import com.junghun.con.domain.menu.repository.MenuRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,9 +14,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CategoryService {
+public class CategoriesService {
 
-    private final CategoryRepository repository;
+    private final CategoriesRepository repository;
     private final MenuRepository menuRepository;
 
     public Category addCategory(CategoryDto categoryDto) {

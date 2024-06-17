@@ -3,12 +3,8 @@ package com.junghun.con.domain.basket.service;
 import com.junghun.con.domain.basket.dto.BasketDto;
 import com.junghun.con.domain.basket.entity.BasketMenu;
 import com.junghun.con.domain.basket.repository.BasketMenuRepository;
-import com.junghun.con.domain.menu.dto.CategoryDto;
-import com.junghun.con.domain.menu.entity.Category;
 import com.junghun.con.domain.menu.entity.Menu;
-import com.junghun.con.domain.menu.exception.DuplicatedCategoryException;
 import com.junghun.con.domain.menu.exception.NotFoundMenuException;
-import com.junghun.con.domain.menu.repository.CategoryRepository;
 import com.junghun.con.domain.menu.repository.MenuRepository;
 import com.junghun.con.domain.store.entity.Store;
 import com.junghun.con.domain.store.exception.NotFoundStoreException;
@@ -18,8 +14,6 @@ import com.junghun.con.domain.user.exception.NotFoundUserException;
 import com.junghun.con.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

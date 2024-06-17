@@ -5,6 +5,9 @@ import com.junghun.con.domain.point.entity.Point;
 import com.junghun.con.domain.point.exception.NotFoundPointException;
 import com.junghun.con.domain.point.exception.UnavailablePointException;
 import com.junghun.con.domain.point.repository.PointRepository;
+import com.junghun.con.domain.user.entity.User;
+import com.junghun.con.domain.user.exception.NotFoundUserException;
+import com.junghun.con.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +20,13 @@ public class PointService {
 
     private final PointRepository repository;
 
+    private final UserRepository userRepository;
+
     public Point makePoint(MakePointDto makePointDto) {
+
+        User user = userRepository.findById(makePointDto.getUserId()).orElseThrow(()->new NotFoundUserException("해당 id를 가진 유저를 찾을 수 없습니다."));
         Point point = Point.builder()
-                .userId(makePointDto.getUserId())
+                .user(user)
                 .point(makePointDto.getPoint())
                 .minOrderPrice(makePointDto.getMinOrderPrice())
                 .receivedDate(LocalDateTime.now())
@@ -31,8 +38,10 @@ public class PointService {
     }
 
     public void welcomePoint(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(()->new NotFoundUserException("해당 id를 가진 유저를 찾을 수 없습니다."));
+
         Point point = Point.builder()
-                .userId(userId)
+                .user(user)
                 .point(1000)
                 .minOrderPrice(10000)
                 .receivedDate(LocalDateTime.now())
@@ -55,7 +64,7 @@ public class PointService {
 
         Point usedPoint = Point.builder()
                 .id(id)
-                .userId(point.getUserId())
+                .user(point.getUser())
                 .point(point.getPoint())
                 .minOrderPrice(point.getMinOrderPrice())
                 .receivedDate(point.getReceivedDate())

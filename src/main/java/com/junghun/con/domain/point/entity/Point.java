@@ -1,5 +1,7 @@
 package com.junghun.con.domain.point.entity;
 
+import com.junghun.con.domain.order.entity.Order;
+import com.junghun.con.domain.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,8 +19,9 @@ public class Point {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     @Column(name = "point")
     private int point;
