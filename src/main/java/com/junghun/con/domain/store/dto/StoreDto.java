@@ -3,7 +3,6 @@ package com.junghun.con.domain.store.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -14,5 +13,5 @@ public class StoreDto {
     private String detailPlace;
     private int openHour;
     private int closeHour;
-    private boolean isRestHoliday;
+    private boolean restHoliday;
 }

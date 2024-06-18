@@ -30,7 +30,6 @@ public class Store {
     @Column(name = "close_hour")
     private int closeHour;
 
-    @Builder.Default
-    @Column(name = "is_rest_holiday")
-    private boolean isRestHoliday = false;
+    @Column(name = "rest_holiday")
+    private boolean restHoliday = false;
 }

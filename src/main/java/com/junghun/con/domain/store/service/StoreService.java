@@ -25,7 +25,7 @@ public class StoreService {
                 .name(storeDto.getName())
                 .openHour(storeDto.getOpenHour())
                 .closeHour(storeDto.getCloseHour())
-                .isRestHoliday(storeDto.isRestHoliday())
+                .restHoliday(storeDto.isRestHoliday())
                 .build();
 
         Store savedStore = repository.save(store);
