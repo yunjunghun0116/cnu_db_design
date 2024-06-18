@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +32,12 @@ public class BasketService {
         Menu menu = menuRepository.findById(basketDto.getMenuId()).orElseThrow(() -> new NotFoundMenuException("해당 id를 가진 메뉴가 존재하지 않습니다."));
         User user = userRepository.findById(basketDto.getUserId()).orElseThrow(() -> new NotFoundUserException("해당 id를 가진 유저가 존재하지 않습니다."));
         Store store = storeRepository.findById(basketDto.getStoreId()).orElseThrow(() -> new NotFoundStoreException("해당 id를 가진 음식점이 존재하지 않습니다."));
+
+        List<BasketMenu> basketMenuList = getAllByUserId(basketDto.getUserId());
+        for(BasketMenu basketMenu : basketMenuList){
+            if(Objects.equals(basketMenu.getStore().getId(), store.getId())) continue;
+            deleteBasketMenu(basketMenu.getId());
+        }
 
         BasketMenu basketMenu = BasketMenu.builder()
                 .menu(menu)
