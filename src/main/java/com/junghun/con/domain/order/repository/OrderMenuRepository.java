@@ -12,5 +12,8 @@ import java.util.List;
 public interface OrderMenuRepository extends JpaRepository<OrderMenu, Long> {
 
     @Query(value = "SELECT om.menu_id FROM order_menu om GROUP BY om.menu_id ORDER BY COUNT(*) DESC LIMIT 1", nativeQuery = true)
-    Long getMaxSoldMenuId();
+    Long getMaxSoldMenu();
+
+    @Query(value = "SELECT o.store_id FROM orders o GROUP BY o.store_id ORDER BY COUNT(*) DESC LIMIT 1", nativeQuery = true)
+    Long getMaxSoldStore();
 }

@@ -42,8 +42,14 @@ public class OrderController {
     }
 
     @GetMapping("/maxSoldMenu")
-    public ResponseEntity<Menu> getMaxSoldMenuId() {
-        Menu menu = service.getMaxSoldMenuId();
+    public ResponseEntity<Menu> getMaxSoldMenu() {
+        Menu menu = service.getMaxSoldMenu();
         return new ResponseEntity<>(menu, HttpStatus.OK);
+    }
+
+    @GetMapping("/maxSoldStore")
+    public ResponseEntity<Store> getMaxSoldStore() {
+        Store store = service.getMaxSoldStore();
+        return new ResponseEntity<>(store, HttpStatus.OK);
     }
 }

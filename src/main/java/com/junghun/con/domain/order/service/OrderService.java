@@ -92,9 +92,14 @@ public class OrderService {
         return repository.getUserHistoryWithDate(userId,startDate,endDate);
     }
 
-    public Menu getMaxSoldMenuId() {
-        Long menuId = orderMenuRepository.getMaxSoldMenuId();
+    public Menu getMaxSoldMenu() {
+        Long menuId = orderMenuRepository.getMaxSoldMenu();
         return menuRepository.findById(menuId).orElseThrow(()-> new NotFoundMenuException("존재하지 않는 메뉴입니다."));
+    }
+
+    public Store getMaxSoldStore() {
+        Long storeId = orderMenuRepository.getMaxSoldStore();
+        return storeRepository.findById(storeId).orElseThrow(()-> new NotFoundStoreException("존재하지 않는 음식점입니다."));
     }
 
 }
