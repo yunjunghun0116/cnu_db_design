@@ -5,6 +5,7 @@ import com.junghun.con.domain.basket.repository.BasketMenuRepository;
 import com.junghun.con.domain.order.dto.OrderDto;
 import com.junghun.con.domain.order.entity.Order;
 import com.junghun.con.domain.order.entity.OrderMenu;
+import com.junghun.con.domain.order.exception.EmptyBasketException;
 import com.junghun.con.domain.order.repository.OrderMenuRepository;
 import com.junghun.con.domain.order.repository.OrderRepository;
 import com.junghun.con.domain.point.dto.MakePointDto;
@@ -37,8 +38,10 @@ public class OrderService {
     public Order order(OrderDto orderDto) {
         List<BasketMenu> allBasketMenu = getAllBasketMenu(orderDto.getUserId());
 
+        if(allBasketMenu.isEmpty()) throw new EmptyBasketException("장바구니가 비어있습니다.");
+
         User user = userRepository.findById(orderDto.getUserId()).orElseThrow(() -> new NotFoundUserException("해당 id를 가진 유저가 존재하지 않습니다."));
-        Store store = storeRepository.findById(orderDto.getStoreId()).orElseThrow(() -> new NotFoundStoreException("해당 id를 가진 음식점이 존재하지 않습니다."));
+        Store store = storeRepository.findById(allBasketMenu.get(0).getStore().getId()).orElseThrow(() -> new NotFoundStoreException("해당 id를 가진 음식점이 존재하지 않습니다."));
 
         Order order = Order.builder()
                 .user(user)

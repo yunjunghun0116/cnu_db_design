@@ -7,6 +7,5 @@ import lombok.Setter;
 @Setter
 public class OrderDto {
     private Long userId;
-    private Long storeId;
     private int totalPrice;
 }

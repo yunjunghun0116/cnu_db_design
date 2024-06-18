@@ -21,11 +21,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "store_id", referencedColumnName = "id")
     private Store store;
 
@@ -35,8 +35,4 @@ public class Order {
 
     @Column(name = "order_date")
     private LocalDateTime orderDate;
-
-    @Builder.Default
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderMenu> orderMenuList = new ArrayList<>();
 }
