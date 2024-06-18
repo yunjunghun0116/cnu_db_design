@@ -2,7 +2,7 @@ package com.junghun.con.domain.menu.controller;
 
 import com.junghun.con.domain.menu.dto.CategoryDto;
 import com.junghun.con.domain.menu.entity.Category;
-import com.junghun.con.domain.menu.service.CategoriesService;
+import com.junghun.con.domain.menu.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/category")
 @RequiredArgsConstructor
-public class CategoriesController {
+public class CategoryController {
 
-    private final CategoriesService service;
+    private final CategoryService service;
 
     @PutMapping("/add")
     public ResponseEntity<Category> addCategory(@RequestBody CategoryDto categoryDto) {

@@ -23,8 +23,4 @@ public class Menu {
 
     @Column(name = "price")
     private int price;
-
-    @Builder.Default
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Category> categoryList = new ArrayList<>();
 }

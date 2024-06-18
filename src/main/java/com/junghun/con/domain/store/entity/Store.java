@@ -33,8 +33,4 @@ public class Store {
     @Builder.Default
     @Column(name = "is_rest_holiday")
     private boolean isRestHoliday = false;
-
-    @Builder.Default
-    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orderList = new ArrayList<>();
 }
