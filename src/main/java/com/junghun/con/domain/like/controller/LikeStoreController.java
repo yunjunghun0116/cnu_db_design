@@ -18,7 +18,7 @@ public class LikeStoreController {
 
     private final LikeStoreService service;
 
-    @PutMapping("/like")
+    @PutMapping
     public ResponseEntity<Void> like(@RequestBody LikeStoreDto likeStoreDto) {
         service.like(likeStoreDto);
         return ResponseEntity.ok().build();
@@ -30,7 +30,7 @@ public class LikeStoreController {
         return new ResponseEntity<>(isLike, HttpStatus.OK);
     }
 
-    @DeleteMapping("/dislike")
+    @PostMapping("/dislike")
     public ResponseEntity<Void> dislike(@RequestBody LikeStoreDto likeStoreDto) {
         service.dislike(likeStoreDto);
         return ResponseEntity.ok().build();
