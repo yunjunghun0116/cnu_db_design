@@ -24,11 +24,11 @@ public class Store {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "open_time")
-    private LocalTime openTime;
+    @Column(name = "open_hour")
+    private int openHour;
 
-    @Column(name = "close_time")
-    private LocalTime closeTime;
+    @Column(name = "close_hour")
+    private int closeHour;
 
     @Builder.Default
     @Column(name = "is_rest_holiday")

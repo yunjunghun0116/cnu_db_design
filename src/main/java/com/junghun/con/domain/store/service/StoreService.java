@@ -9,6 +9,7 @@ import com.junghun.con.domain.store.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -22,8 +23,8 @@ public class StoreService {
     public Store openStore(StoreDto storeDto) {
         Store store = Store.builder()
                 .name(storeDto.getName())
-                .openTime(storeDto.getOpenTime())
-                .closeTime(storeDto.getCloseTime())
+                .openHour(storeDto.getOpenHour())
+                .closeHour(storeDto.getCloseHour())
                 .isRestHoliday(storeDto.isRestHoliday())
                 .build();
 

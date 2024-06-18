@@ -12,7 +12,7 @@ public class StoreDto {
     private String city;
     private String middlePlace;
     private String detailPlace;
-    private LocalTime openTime;
-    private LocalTime closeTime;
+    private int openHour;
+    private int closeHour;
     private boolean isRestHoliday;
 }
