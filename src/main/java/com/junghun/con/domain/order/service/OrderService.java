@@ -2,6 +2,9 @@ package com.junghun.con.domain.order.service;
 
 import com.junghun.con.domain.basket.entity.BasketMenu;
 import com.junghun.con.domain.basket.repository.BasketMenuRepository;
+import com.junghun.con.domain.menu.entity.Menu;
+import com.junghun.con.domain.menu.exception.NotFoundMenuException;
+import com.junghun.con.domain.menu.repository.MenuRepository;
 import com.junghun.con.domain.order.dto.OrderDto;
 import com.junghun.con.domain.order.entity.Order;
 import com.junghun.con.domain.order.entity.OrderMenu;
@@ -34,6 +37,8 @@ public class OrderService {
     private final UserRepository userRepository;
     private final StoreRepository storeRepository;
     private final PointService pointService;
+
+    private final MenuRepository menuRepository;
 
     public Order order(OrderDto orderDto) {
         List<BasketMenu> allBasketMenu = getAllBasketMenu(orderDto.getUserId());
@@ -85,6 +90,11 @@ public class OrderService {
 
     public List<Order> getUserHistoryWithDate(Long userId,String startDate,String endDate) {
         return repository.getUserHistoryWithDate(userId,startDate,endDate);
+    }
+
+    public Menu getMaxSoldMenuId() {
+        Long menuId = orderMenuRepository.getMaxSoldMenuId();
+        return menuRepository.findById(menuId).orElseThrow(()-> new NotFoundMenuException("존재하지 않는 메뉴입니다."));
     }
 
 }

@@ -27,7 +27,7 @@ public class CategoryController {
     @GetMapping("/menu/{id}")
     public ResponseEntity<List<Category>> getMenuCategory(@PathVariable Long id) {
         List<Category> categoryList = service.getMenuCategory(id);
-        return new ResponseEntity<>(categoryList, HttpStatus.CREATED);
+        return new ResponseEntity<>(categoryList, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

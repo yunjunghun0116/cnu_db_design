@@ -1,5 +1,6 @@
 package com.junghun.con.domain.order.controller;
 
+import com.junghun.con.domain.menu.entity.Menu;
 import com.junghun.con.domain.order.dto.OrderDto;
 import com.junghun.con.domain.order.entity.Order;
 import com.junghun.con.domain.order.service.OrderService;
@@ -38,5 +39,11 @@ public class OrderController {
     public ResponseEntity<List<Order>> getUserHistoryWithDate(@RequestParam Long userId,@RequestParam String startDate, @RequestParam String endDate) {
         List<Order> orderList = service.getUserHistoryWithDate(userId,startDate,endDate);
         return new ResponseEntity<>(orderList, HttpStatus.OK);
+    }
+
+    @GetMapping("/maxSoldMenu")
+    public ResponseEntity<Menu> getMaxSoldMenuId() {
+        Menu menu = service.getMaxSoldMenuId();
+        return new ResponseEntity<>(menu, HttpStatus.OK);
     }
 }
