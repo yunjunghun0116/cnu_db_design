@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/basket")
 @RequiredArgsConstructor
@@ -19,6 +21,12 @@ public class BasketController {
     public ResponseEntity<BasketMenu> addBasketMenu(@RequestBody BasketDto basketDto) {
         BasketMenu basketMenu = service.addBasketMenu(basketDto);
         return new ResponseEntity<>(basketMenu, HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<BasketMenu>> getAllByUserId(@RequestParam Long userId) {
+        List<BasketMenu> basketMenuList = service.getAllByUserId(userId);
+        return new ResponseEntity<>(basketMenuList, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

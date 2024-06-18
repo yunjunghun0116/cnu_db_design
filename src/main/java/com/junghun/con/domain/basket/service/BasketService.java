@@ -15,6 +15,8 @@ import com.junghun.con.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BasketService {
@@ -38,6 +40,11 @@ public class BasketService {
                 .build();
 
         return repository.save(basketMenu);
+    }
+
+    public List<BasketMenu> getAllByUserId(Long userId) {
+
+        return repository.findAllByUserId(userId);
     }
 
     public void deleteBasketMenu(Long id) {
