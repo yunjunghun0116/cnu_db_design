@@ -13,4 +13,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     @Query("SELECT c FROM Category c WHERE c.name = :categoryName AND c.menu.id = :menuId")
     List<Category> findDuplicatedCategoryName(Long menuId, String categoryName);
 
+    @Query("SELECT c FROM Category c WHERE c.menu.id = :menuId")
+    List<Category> getMenuCategory(Long menuId);
+
 }

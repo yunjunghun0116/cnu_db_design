@@ -79,4 +79,12 @@ public class OrderService {
         return basketMenuRepository.findAllByUserId(userId);
     }
 
+    public List<Order> getUserHistoryAll(Long userId) {
+        return repository.getUserHistoryAll(userId);
+    }
+
+    public List<Order> getUserHistoryWithDate(Long userId,String startDate,String endDate) {
+        return repository.getUserHistoryWithDate(userId,startDate,endDate);
+    }
+
 }

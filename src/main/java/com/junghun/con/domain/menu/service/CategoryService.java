@@ -36,6 +36,11 @@ public class CategoryService {
         return repository.save(category);
     }
 
+    public List<Category> getMenuCategory(Long menuId) {
+
+        return repository.getMenuCategory(menuId);
+    }
+
     public void deleteCategory(Long id) {
         repository.deleteById(id);
     }

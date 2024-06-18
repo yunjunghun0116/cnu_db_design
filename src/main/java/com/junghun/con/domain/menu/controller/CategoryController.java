@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/category")
@@ -20,6 +22,12 @@ public class CategoryController {
     public ResponseEntity<Category> addCategory(@RequestBody CategoryDto categoryDto) {
         Category category = service.addCategory(categoryDto);
         return new ResponseEntity<>(category, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/menu/{id}")
+    public ResponseEntity<List<Category>> getMenuCategory(@PathVariable Long id) {
+        List<Category> categoryList = service.getMenuCategory(id);
+        return new ResponseEntity<>(categoryList, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
