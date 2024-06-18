@@ -45,6 +45,10 @@ public class StoreService {
         return repository.findAll();
     }
 
+    public List<Store> getLikeStore(Long userId) {
+        return repository.findLikeStore(userId);
+    }
+
     public Store getStoreById(Long id) {
         return repository.findById(id).orElseThrow(() -> new NotFoundStoreException(id + " 아이디를 가진 음식점이 존재하지 않습니다."));
     }

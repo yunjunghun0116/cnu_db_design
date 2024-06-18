@@ -31,5 +31,5 @@ public class Store {
     private int closeHour;
 
     @Column(name = "rest_holiday")
-    private boolean restHoliday = false;
+    private boolean restHoliday;
 }

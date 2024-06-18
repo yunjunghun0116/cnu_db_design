@@ -29,6 +29,12 @@ public class StoreController {
         return new ResponseEntity<>(storeList, HttpStatus.OK);
     }
 
+    @GetMapping("/like")
+    public ResponseEntity<List<Store>> getLikeStore(@RequestParam Long userId) {
+        List<Store> storeList = service.getLikeStore(userId);
+        return new ResponseEntity<>(storeList, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Store> getStoreById(@PathVariable Long id) {
         Store store = service.getStoreById(id);
