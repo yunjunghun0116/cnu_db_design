@@ -63,6 +63,8 @@ public class OrderService {
             basketMenuRepository.deleteById(menu.getId());
         }
 
+        pointService.useAllPoint(user.getId());
+
         MakePointDto pointDto = new MakePointDto();
         pointDto.setPoint((int) (orderDto.getTotalPrice() * 0.1));
         pointDto.setUserId(orderDto.getUserId());

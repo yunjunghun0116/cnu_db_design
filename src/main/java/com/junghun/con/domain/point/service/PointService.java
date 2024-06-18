@@ -74,4 +74,23 @@ public class PointService {
 
         return repository.save(usedPoint);
     }
+
+    public void useAllPoint(Long userId) {
+        List<Point> pointList = getUserPoint(userId);
+
+        for(Point point : pointList){
+            Point usedPoint = Point.builder()
+                    .id(point.getId())
+                    .user(point.getUser())
+                    .point(point.getPoint())
+                    .minOrderPrice(point.getMinOrderPrice())
+                    .receivedDate(point.getReceivedDate())
+                    .expiredDate(point.getExpiredDate())
+                    .isUsed(true)
+                    .build();
+            repository.save(usedPoint);
+        }
+
+
+    }
 }
