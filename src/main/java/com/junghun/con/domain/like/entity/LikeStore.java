@@ -1,5 +1,6 @@
 package com.junghun.con.domain.like.entity;
 
+import com.junghun.con.domain.store.entity.Store;
 import com.junghun.con.domain.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,6 +21,7 @@ public class LikeStore {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @Column(name = "store_id")
-    private Long storeId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id", referencedColumnName = "id")
+    private Store store;
 }
