@@ -13,5 +13,5 @@ import java.util.List;
 public interface LikeStoreRepository extends JpaRepository<LikeStore, Long> {
 
     @Query("SELECT l FROM LikeStore l WHERE l.store.id = :storeId AND l.user.id = :userId")
-    List<LikeStore> isLike(Long storeId,Long userId);
+    List<LikeStore> isLike(Long storeId, Long userId);
 }

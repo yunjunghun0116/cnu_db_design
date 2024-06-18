@@ -14,5 +14,5 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> getUserHistoryAll(Long userId);
 
     @Query(value = "SELECT * FROM orders WHERE user_id = :userId AND  order_date > :startDate AND order_date < :endDate", nativeQuery = true)
-    List<Order> getUserHistoryWithDate(Long userId,String startDate,String endDate);
+    List<Order> getUserHistoryWithDate(Long userId, String startDate, String endDate);
 }
